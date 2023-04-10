@@ -37,4 +37,4 @@ func getIntFrom(_ character: Character) -> Int {
     return character.wholeNumberValue ?? 0
 }
 
-superDigit(n: "148", k: 3)
+superDigit(n: Array(repeating: 9, count: 1000).map(String.init).joined(), k: 1000)
