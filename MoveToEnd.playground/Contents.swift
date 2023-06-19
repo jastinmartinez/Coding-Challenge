@@ -15,7 +15,8 @@ func moveElementToEnd(_ array: inout [Int], _ toMove: Int) -> [Int] {
             array.swapAt(end, start)
             start += 1
         } else if start == end && array[start] == toMove {
-            array.swapAt(start, array.count - 1) }
+            array.swapAt(start, array.count - 1)
+        }
         else {
             end -= 1
             start += 1

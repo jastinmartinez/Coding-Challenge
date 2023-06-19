@@ -1,34 +1,31 @@
-import Foundation
-import XCTest
+import UIKit
 
+var greeting = "Hello, playground"
 
 func commonCharacters(_ strings: [String]) -> [String] {
-    var dic = [String: Int]()
-    for item in strings {
-        for subItem in item where subItem == String {
-            if let value = dic[subItem] {
-                dic[subItem] = value + 1
-            } else {
-                dic[subItem] = 0
+    guard strings.count > 1 else {
+        return strings
+    }
+
+    var dic = strings.first?.reduce(into: [Character: Int](), { partialResult, element in
+        partialResult[element] = 1
+    })
+
+    var index = 1
+
+    while index < strings.count {
+        for chr in strings[index] {
+            if let value = dic?[chr] {
+                if index == value {
+                    dic?[chr] = value + 1
+                }
             }
         }
+        index += 1
     }
-    
-    return dic.filter({$0.value == strings.count}).keys
+    return dic?.filter({$0.value == strings.count})
+        .compactMap({ String($0.key) }) ?? []
+
 }
 
-func loopTo(_ array: Set<String>, dic: inout [String.Element: Int]) {
-    var left = 0
-    var right = array.count - 1
-    while left < right {
-        left += 1
-        right -= 1
-        
-        if left > right {
-            
-        }
-    }
-}
-
-
-commonCharacters(["aa","bb","cc"])
+commonCharacters(["a"])
