@@ -39,8 +39,8 @@ enum BinaryTree<T: Comparable> {
             return
         case let .node(left, value, right):
             completion(value)
-            left.inOrderTraversal(completion)
-            right.inOrderTraversal(completion)
+            left.preOrderTraversal(completion)
+            right.preOrderTraversal(completion)
         }
     }
     
@@ -49,8 +49,8 @@ enum BinaryTree<T: Comparable> {
         case .empty:
             return
         case let .node(left, value, right):
-            left.inOrderTraversal(completion)
-            right.inOrderTraversal(completion)
+            left.postOrderTraversal(completion)
+            right.postOrderTraversal(completion)
             completion(value)
         }
     }
