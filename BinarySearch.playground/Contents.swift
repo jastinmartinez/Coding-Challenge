@@ -6,10 +6,11 @@ let target = 21
 func binarySearch(array: [Int], target: Int) -> Int {
     var lhs = 0
     var lhr = array.count-1
-    var index = (array.count-1) / 2
+    var index = lhr / 2
+    let fail = -1
     while lhs != lhr {
         guard index > -1 && index < array.count else {
-            return -1
+            return fail
         }
         let value = array[lhs...lhr][index]
         if value > target {
@@ -19,10 +20,9 @@ func binarySearch(array: [Int], target: Int) -> Int {
         } else {
             return index
         }
-        
         index = (lhr + lhs) / 2
     }
-    return array[index] == target ? index : -1
+    return array[index] == target ? index : fail
 }
 
-binarySearch(array: array, target: target)
+print(binarySearch(array: array, target: target))
