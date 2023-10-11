@@ -2,11 +2,11 @@ import UIKit
 
 func tandemBicycle(_ redShirtSpeeds: inout [Int], _ blueShirtSpeeds: inout [Int], _ fastest: Bool) -> Int {
     
-    redShirtSpeeds = redShirtSpeeds.sorted()
-    blueShirtSpeeds = blueShirtSpeeds.sorted()
+    redShirtSpeeds = redShirtSpeeds.xSort()
+    blueShirtSpeeds = blueShirtSpeeds.xSort()
     
     if fastest {
-        blueShirtSpeeds = blueShirtSpeeds.reversed()
+        blueShirtSpeeds = blueShirtSpeeds.xReversed()
     }
     
     return zip(redShirtSpeeds, blueShirtSpeeds).reduce(into: Int()) { partialResult, item in
@@ -14,6 +14,43 @@ func tandemBicycle(_ redShirtSpeeds: inout [Int], _ blueShirtSpeeds: inout [Int]
     }
 }
 
+
+private extension Array where Element == Int {
+    func xSort() -> [Element] {
+        return xSort(self)
+    }
+    //    Easy bubble sort .
+    private func xSort(_ item: [Element]) -> [Element] {
+        var item = item
+        var index = 0
+        var isSorted = true
+        while (index + 1) < item.count {
+            if item[index] > item[index + 1] {
+                item.swapAt(index, index + 1)
+                isSorted = false
+            }
+            index += 1
+        }
+        if !isSorted {
+            item = xSort(item)
+        }
+        return item
+    }
+    
+    func xReversed() -> [Element] {
+        return xReversed(self)
+    }
+    
+    // Recursion Reversed
+    private func xReversed(_ item: [Element]) -> [Element] {
+        guard !item.isEmpty else {
+            return []
+        }
+        let lastElement = item[item.count-1]
+        let nextElements = Array(item[0..<item.count-1])
+        return [lastElement] + xReversed(nextElements)
+    }
+}
 
 
 var arr1 = [5, 5, 3, 9, 2]
