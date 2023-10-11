@@ -1,12 +1,12 @@
 import UIKit
 
 func tandemBicycle(_ redShirtSpeeds: inout [Int], _ blueShirtSpeeds: inout [Int], _ fastest: Bool) -> Int {
+    
+    redShirtSpeeds = redShirtSpeeds.sorted()
+    blueShirtSpeeds = blueShirtSpeeds.sorted()
+    
     if fastest {
-        redShirtSpeeds = redShirtSpeeds.sorted()
-        blueShirtSpeeds = blueShirtSpeeds.sorted().reversed()
-    } else {
-        redShirtSpeeds = redShirtSpeeds.sorted()
-        blueShirtSpeeds = blueShirtSpeeds.sorted()
+        blueShirtSpeeds = blueShirtSpeeds.reversed()
     }
     
     return zip(redShirtSpeeds, blueShirtSpeeds).reduce(into: Int()) { partialResult, item in
