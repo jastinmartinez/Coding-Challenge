@@ -10,6 +10,9 @@ func optimalFreelancing(_ jobs: [[String: Int]]) -> Int {
                 if payment > alreadySetUp[posibleIndex] {
                     let oldPayment = alreadySetUp[posibleIndex]
                     alreadySetUp[posibleIndex] = payment
+                    guard oldPayment > 0 else {
+                        break
+                    }
                     payment = oldPayment
                 }
                 posibleIndex -= 1
@@ -31,7 +34,7 @@ let jobs = [["deadline": 1, "payment": 1],
             ["deadline": 4, "payment": 5],
             ["deadline": 3, "payment": 1]]
 
-let jobs1 = [["deadline": 8, "payment": 1],
+let jobs1 = [["deadline": 1, "payment": 1],
             ["deadline": 2, "payment": 2],
              ["deadline": 2, "payment": 1]]
 
