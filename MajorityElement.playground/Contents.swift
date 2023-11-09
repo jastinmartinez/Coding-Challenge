@@ -22,9 +22,4 @@ func majorityElement(_ array: [Int]) -> Int {
     return answer
 }
 
-private func add(add value: Int, in list: inout [Int]) {
-    
-    
-}
-
 majorityElement([1,2,3,2,2,1,2])
